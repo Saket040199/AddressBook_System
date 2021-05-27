@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class AddressBookMain {
 
     static ContactDirectory contactDirectory = new ContactDirectory();
-    public static void main(String args[]) {
+    public void addressBookMain(){
         Scanner sc = new Scanner(System.in);
         addressBookOperations();
         System.out.println("Do u wqant to proceed , say Yes/No");
