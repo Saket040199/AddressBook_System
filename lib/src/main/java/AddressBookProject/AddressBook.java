@@ -106,6 +106,8 @@ public class AddressBook {
 		this.email = email;
 	}
     
-	
+    public Object getName() {
+        return firstName+" "+lastName;
+    }
     
 }
