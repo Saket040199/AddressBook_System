@@ -1,6 +1,7 @@
 package AddressBookProject;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -191,6 +192,17 @@ public class ContactDirectory {
                         .filter(person -> person.getState().equalsIgnoreCase(stateName)).count();
                 System.out.println(countByCity);
             }
+        }
+    }
+    
+    public void sortNameAlphabetically() {
+        ArrayList<AddressBook> contacts = this.getContact();
+        List<AddressBook> sortedList = contacts.stream()
+        		                               .sorted(Comparator.comparing(AddressBook::getFirstName))
+        		                               .collect(Collectors.toList());
+
+        for(AddressBook contact:sortedList){
+            System.out.println("Name: "+contact.getName());
         }
     }
     

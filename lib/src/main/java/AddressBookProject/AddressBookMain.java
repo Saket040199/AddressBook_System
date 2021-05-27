@@ -25,6 +25,8 @@ public class AddressBookMain {
         System.out.println("Enter 4 : Show Contact");
         System.out.println("Enter 5: Search Contact by city name or by state name ");
         System.out.println("Enter 6: Count Contact by city name or by state name ");
+        System.out.println("Enter 7: Sorted person alphabetically");
+        
         int choose = sc.nextInt();
         switch(choose) {
             case 1 :
@@ -51,6 +53,10 @@ public class AddressBookMain {
                 contactDirectory.countPerson();
                 break;
 
+            case 7:
+                contactDirectory.sortNameAlphabetically();
+                break;
+                
             default:
                 System.out.println("Invalid Choice");
                 break;

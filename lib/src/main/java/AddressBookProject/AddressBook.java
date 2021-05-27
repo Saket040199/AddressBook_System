@@ -1,8 +1,8 @@
 package AddressBookProject;
 
 public class AddressBook {
-    private String firstName ;
-    private String lastName;
+    public String firstName ;
+    public String lastName;
     private String address;
     private String city;
     private String state;
