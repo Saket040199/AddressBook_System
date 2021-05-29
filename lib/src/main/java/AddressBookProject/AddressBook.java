@@ -1,5 +1,7 @@
 package AddressBookProject;
 
+import java.util.Objects;
+
 public class AddressBook {
     public String firstName ;
     public String lastName;
@@ -132,6 +134,13 @@ public class AddressBook {
                 ", phoneNo=" + phoneNo +
                 ", email='" + email + '\'' +
                 '}';
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AddressBook that = (AddressBook) o;
+        return zip == that.zip && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(address, that.address) && Objects.equals(city, that.city) && Objects.equals(state, that.state) && Objects.equals(phoneNo, that.phoneNo) && Objects.equals(email, that.email);
     }
     
 }

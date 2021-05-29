@@ -3,6 +3,7 @@ package AddressBookProject;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,6 +14,8 @@ public class AddressBookConnection {
 
     List<AddressBook> addressBookList;
     private static AddressBookConnection addressBookConnection;
+    private PreparedStatement recordDataStatement;
+    
     public Connection getConnection() throws SQLException {
         String jdbcURL = "jdbc:mysql://localhost:3306/address_book_service?useSSL=false";
         String userName = "root";
@@ -68,5 +71,43 @@ public class AddressBookConnection {
                     "!!Unable to read data from database!!");
         }
         return addressBookList;
+    }
+    
+    public List<AddressBook> getRecordDataByName(String firstName) throws AddressBookException {
+        List<AddressBook> record = null;
+        if (this.recordDataStatement == null) this.preparedStatementForRecord();
+        try {
+            recordDataStatement.setString(1, firstName);
+            ResultSet resultSet = recordDataStatement.executeQuery();
+            record = this.getAddressBookData(resultSet);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new AddressBookException(AddressBookException.AddressBookExceptionType.UPDATION_DATA_EXCEPTION,
+                    "!!Unable to update data from database!!");
+        }
+        return record;
+    }
+
+    private void preparedStatementForRecord() {
+        try {
+            Connection connection = this.getConnection();
+            String query = "SELECT * FROM address_book_table WHERE first_name = ?";
+            recordDataStatement = connection.prepareStatement(query);
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public int updateDataUsingPreparedStatement(String firstName, String address) {
+        String query = "UPDATE address_book_table SET address = ? WHERE first_name = ?";
+        try (Connection connection = this.getConnection()) {
+            PreparedStatement preparedStatementUpdate = connection.prepareStatement(query);
+            preparedStatementUpdate.setString(1, address);
+            preparedStatementUpdate.setString(2, firstName);
+            return preparedStatementUpdate.executeUpdate();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return 0;
     }
 }

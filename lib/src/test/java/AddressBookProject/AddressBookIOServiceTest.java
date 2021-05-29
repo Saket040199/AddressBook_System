@@ -63,8 +63,15 @@ public class AddressBookIOServiceTest {
     public void givenAddressBook_WhenRetrived_ShouldReturnAddressBookSize() throws AddressBookException {
         addressBookList = addressBookService.readAddressBookData();
         System.out.println(addressBookList);
-        Assert.assertEquals(4, addressBookList.size());
-        
+        Assert.assertEquals(4, addressBookList.size());     
     }
 
+    @Test
+    public void givenNewAddress_WhenUpdated_ShouldSyncWithDatabase() throws AddressBookException {
+        AddressBookService addressBookService = new AddressBookService();
+        List<AddressBook>addressBooks = addressBookService.readAddressBookData();
+        addressBookService.updateAddress("Anikesh","jammuland");
+        boolean result = addressBookService.checkEmployeePayrollInSyncWithDB("Anikesh");
+        Assert.assertTrue(result);
+    }
 }
