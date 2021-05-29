@@ -98,4 +98,19 @@ public class AddressBookIOServiceTest {
 
     }
 
+    @Test
+    public void givenMultipleContact_WhenAdded_ShouldSyncWithDB() throws AddressBookException {
+        AddressBook[] addressBooks= {
+                new AddressBook("Samkit", "jain", "purana panna naka", "chhatarpur",
+                        "MP", "789456244", "Sam30@gmail.com"),
+                new AddressBook("Sachi", "jain", "mahaveer colony", "chhatarpur",
+                        "MP", "785625444", "sachi21@gmail.com")
+
+        };
+        List<AddressBook> addressBookList = Arrays.asList(addressBooks);
+        addressBookService.addMultipleContactsToRecord(addressBookList);
+        Assert.assertTrue(addressBookService.checkAddressBookInSyncWithDB("Samkit"));
+        Assert.assertTrue(addressBookService.checkAddressBookInSyncWithDB("Sachi"));
+
+    }
 }
