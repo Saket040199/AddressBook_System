@@ -1,5 +1,6 @@
 package AddressBookProject;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class AddressBook {
@@ -11,6 +12,7 @@ public class AddressBook {
     private int zip;
     private String phoneNo;
     private String email;
+    public LocalDate startDate;
     
 	public AddressBook(String firstName, String lastName, String address, 
 			           String city, String state, String phoneNo,
@@ -26,7 +28,7 @@ public class AddressBook {
 		this.email = email;
 	}
 
-    public AddressBook(String firstName, String lastName, String address, String city, String state, String email,int zip) {
+    public AddressBook(String firstName, String lastName, String address, String city, String state, String email,int zip,LocalDate startDate) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
@@ -36,6 +38,7 @@ public class AddressBook {
         
         this.email = email;
         this.zip=zip;
+        this.startDate=startDate;
     }
 
 
