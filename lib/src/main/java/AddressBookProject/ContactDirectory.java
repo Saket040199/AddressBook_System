@@ -45,7 +45,7 @@ public class ContactDirectory {
                 String email = scanner.next();
 
                 System.out.println("Enter the mobile number :");
-                long phoneNo = scanner.nextLong();
+                String phoneNo = scanner.next();
 
                 System.out.println("Enter the zip :");
                 int zip = scanner.nextInt();
@@ -84,7 +84,7 @@ public class ContactDirectory {
                     System.out.println("Enter updated pin code :");
                     int zp = scanner.nextInt();
                     System.out.println("Enter updated Phone Number :");
-                    long phone = scanner.nextLong();
+                    String phone = scanner.next();
 
                     contacts.get(i).setFirstName(fname);
                     contacts.get(i).setLastName(lname);

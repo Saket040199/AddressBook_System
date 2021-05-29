@@ -7,11 +7,11 @@ public class AddressBook {
     private String city;
     private String state;
     private int zip;
-    private long phoneNo;
+    private String phoneNo;
     private String email;
     
 	public AddressBook(String firstName, String lastName, String address, 
-			           String city, String state, long phoneNo,
+			           String city, String state, String phoneNo,
 			           String email, int zip) {
 		super();
 		this.firstName = firstName;
@@ -23,6 +23,18 @@ public class AddressBook {
 		this.phoneNo = phoneNo;
 		this.email = email;
 	}
+
+    public AddressBook(String firstName, String lastName, String address, String city, String state, String email,int zip) {
+        super();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        
+        this.email = email;
+        this.zip=zip;
+    }
 
 
 	public String getFirstName() {
@@ -85,12 +97,12 @@ public class AddressBook {
 	}
 
 
-	public long getPhoneNo() {
+	public String getPhoneNo() {
 		return phoneNo;
 	}
 
 
-	public void setPhoneNo(long phoneNo) {
+	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
 	}
 

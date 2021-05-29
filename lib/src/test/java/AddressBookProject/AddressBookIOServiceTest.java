@@ -2,6 +2,7 @@ package AddressBookProject;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,13 +11,17 @@ import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 
 public class AddressBookIOServiceTest {
+	
+    AddressBookService addressBookService = new AddressBookService();
+    List<AddressBook> addressBookList;
+
 
     @Test
     public void given3ContactDetailsWhenWrittenToFileShouldReturnCount() {
         AddressBook[] arrayOfEmps = {
-                new AddressBook("Saket", "Jain", "Purana panna naka", "Chhatarpur", "MP", 798746 , "saketj420@gmail.com",471001),
-                new AddressBook("Abhishek", "Jain", "Purana panna naka", "Chhatarpur", "MP", 798746 , "saketj420@gmail.com",471001),
-                new AddressBook("Samkit", "Jain", "Purana panna naka", "Chhatarpur", "MP", 798746 , "saketj420@gmail.com",471001)
+                new AddressBook("Saket", "Jain", "Purana panna naka", "Chhatarpur", "MP", "798746" , "saketj420@gmail.com",471001),
+                new AddressBook("Abhishek", "Jain", "Purana panna naka", "Chhatarpur", "MP", "798746" , "saketj420@gmail.com",471001),
+                new AddressBook("Samkit", "Jain", "Purana panna naka", "Chhatarpur", "MP", "798746" , "saketj420@gmail.com",471001)
         };
         AddressBookIOService addressBookService;
         addressBookService = new AddressBookIOService();
@@ -30,9 +35,9 @@ public class AddressBookIOServiceTest {
     @Test
     public void CSV_Test() throws CsvRequiredFieldEmptyException, CsvDataTypeMismatchException, IOException {
         AddressBook[] arrayOfEmps = {
-        		   new AddressBook("Saket", "Jain", "Purana panna naka", "Chhatarpur", "MP", 798746 , "saketj420@gmail.com",471001),
-                   new AddressBook("Abhishek", "Jain", "Purana panna naka", "Chhatarpur", "MP", 798746 , "saketj420@gmail.com",471001),
-                   new AddressBook("Samkit", "Jain", "Purana panna naka", "Chhatarpur", "MP", 798746 , "saketj420@gmail.com",471001)
+        		   new AddressBook("Saket", "Jain", "Purana panna naka", "Chhatarpur", "MP", "798746" , "saketj420@gmail.com",471001),
+                   new AddressBook("Abhishek", "Jain", "Purana panna naka", "Chhatarpur", "MP", "798746" , "saketj420@gmail.com",471001),
+                   new AddressBook("Samkit", "Jain", "Purana panna naka", "Chhatarpur", "MP", "798746" , "saketj420@gmail.com",471001)
            };
         AddressBookCSVFile addressBookCsvReader = new AddressBookCSVFile();
         addressBookCsvReader.writeDataInCSVFile(Arrays.asList(arrayOfEmps));
@@ -43,15 +48,23 @@ public class AddressBookIOServiceTest {
     @Test
     public void Json_Test() throws IOException {
         AddressBook[] arrayOfEmps = {
-        		   new AddressBook("Saket", "Jain", "Purana panna naka", "Chhatarpur", "MP", 798746 , "saketj420@gmail.com",471001),
-                   new AddressBook("Abhishek", "Jain", "Purana panna naka", "Chhatarpur", "MP", 798746 , "saketj420@gmail.com",471001),
-                   new AddressBook("Samkit", "Jain", "Purana panna naka", "Chhatarpur", "MP", 798746 , "saketj420@gmail.com",471001)
-               };
+        		   new AddressBook("Saket", "Jain", "Purana panna naka", "Chhatarpur", "MP", "798746" , "saketj420@gmail.com",471001),
+                   new AddressBook("Abhishek", "Jain", "Purana panna naka", "Chhatarpur", "MP", "798746" , "saketj420@gmail.com",471001),
+                   new AddressBook("Samkit", "Jain", "Purana panna naka", "Chhatarpur", "MP", "798746" , "saketj420@gmail.com",471001)
+              };
         AddressBookJSONFile addJsonFile = new AddressBookJSONFile();
         addJsonFile.writeDataInJSONFile(Arrays.asList(arrayOfEmps));
         addJsonFile.readDataFromJSONFile();
         int m = addJsonFile.count();
         Assert.assertEquals(3,m);
+    }
+    
+    @Test
+    public void givenAddressBook_WhenRetrived_ShouldReturnAddressBookSize() throws AddressBookException {
+        addressBookList = addressBookService.readAddressBookData();
+        System.out.println(addressBookList);
+        Assert.assertEquals(4, addressBookList.size());
+        
     }
 
 }
