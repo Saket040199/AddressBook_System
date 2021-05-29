@@ -75,10 +75,19 @@ public class AddressBookIOServiceTest {
         Assert.assertTrue(result);
     }
     
+//    @Test
+//    public void givenDateRangeForRecord_WhenRetrieved_ShouldReturnProperData() throws AddressBookException {
+//        AddressBookService addressBookService = new AddressBookService();
+//        List<AddressBook> recordDataInGivenDateRange = addressBookService.getRecordAddedInDateRange("2020-01-01","2015-05-20");
+//        Assert.assertEquals(3,recordDataInGivenDateRange.size());
+//    }
+//    
     @Test
-    public void givenDateRangeForRecord_WhenRetrieved_ShouldReturnProperData() throws AddressBookException {
+    public void givenNameofCityOrState_WhenRetrieved_ShouldReturnProperData() throws AddressBookException {
         AddressBookService addressBookService = new AddressBookService();
-        List<AddressBook> recordDataInGivenDateRange = addressBookService.getRecordAddedInDateRange("2020-01-01","2015-05-20");
-        Assert.assertEquals(3,recordDataInGivenDateRange.size());
+        List<AddressBook> addressBooks = addressBookService.getRecordsAddedByCityOrStateName("chhatarpur","MP");
+        System.out.println(addressBooks);
+        Assert.assertEquals(2,addressBooks.size());
     }
+
 }

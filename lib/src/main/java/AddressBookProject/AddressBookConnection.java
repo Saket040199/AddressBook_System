@@ -118,4 +118,10 @@ public class AddressBookConnection {
         return this.getDataFromDataBase(query);
 
     }
+    
+    public List<AddressBook> getRecordsByCityOrState(String city, String state) throws AddressBookException {
+        List<AddressBook> addressBooks = this.readData();
+        String query = String.format("SELECT * FROM address_book_table WHERE City='%s' OR State='%s';", city, state);
+        return this.getDataFromDataBase(query);
+    }
 }
